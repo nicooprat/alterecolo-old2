@@ -1,0 +1,16 @@
+[build]
+  functions = "functions/src"
+  functionsSource = "functions/dist"
+
+[dev]
+  command = "npm run serve"
+  targetPort = 8080
+  port = 8888
+  publish = "dist"
+  autoLaunch = true
+  framework = "#custom"
+
+[[redirects]]
+  from = "*"
+  to = "/index.html"
+  status = 200

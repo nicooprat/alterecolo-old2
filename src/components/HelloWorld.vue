@@ -31,10 +31,16 @@
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  setup() {
+    axios.get('/.netlify/functions/airtable').then((data) => {
+      console.log(data)
+    })
   }
 }
 </script>
