@@ -7,9 +7,27 @@
   </header>
 
   <div class="container mx-auto">
-    <router-view />
+    <div v-if="isLoading">LOADING</div>
+    <router-view v-else :categories="getCategories" :items="getItems" />
   </div>
 </template>
+
+<script>
+import { onMounted } from "vue";
+import { fetch, getCategories, getItems, isLoading } from "@/composable/data";
+
+export default {
+  setup() {
+    onMounted(fetch)
+
+    return {
+      getCategories,
+      getItems,
+      isLoading
+    }
+  }
+}
+</script>
 
 <style>
 #app {
