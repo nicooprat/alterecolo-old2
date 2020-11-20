@@ -1,6 +1,6 @@
 const Airtable = require('airtable')
 
-const base = new Airtable({ apiKey: 'keycOP14E2tfhJ9fI' }).base('appI12batrjUkkAdC')
+const base = new Airtable({ apiKey: process.env.AIRTABLE_API_KEY }).base(process.env.AIRTABLE_BASE_ID)
 const items = []
 const categories = []
 
