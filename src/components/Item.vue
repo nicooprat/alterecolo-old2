@@ -38,23 +38,21 @@
 </template>
 
 <script>
-import { computed } from 'vue'
-import router from "@/router";
-
 export default {
   props: {
     item: {
       type: Object,
       required: true,
+    },
+    isLoading: {
+      type: Boolean,
+      default: false,
     }
   },
-  setup(props) {
+  setup() {
     return {
       checked: false,
       check: () => {},
-      getCommentsLink: computed(() => {
-        return router.resolve({name: 'Details', params: {slug: props.item.slug, id: props.item.id}, hash: '#disqus_thread'}).fullPath
-      })
     }
   }
 }
