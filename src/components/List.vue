@@ -1,10 +1,19 @@
 <template>
   <ul class="grid gap-8 grid-cols-list">
     <template v-if="isLoading">
-      <li v-for="item in Array.from(Array(12))" :key="item" class="h-48 bg-neutral-200 rounded-xl" />
+      <li
+        v-for="item in Array.from(Array(12))"
+        :key="item"
+        class="h-48 bg-neutral-200 rounded-xl"
+      />
     </template>
-    <template v-else-if="items.length" >
-      <Item v-for="item in items" :key="item.id" :item="item" class="-mx-4 xs:-mx-0" />
+    <template v-else-if="items.length">
+      <Item
+        v-for="item in items"
+        :key="item.id"
+        :item="item"
+        class="-mx-4 xs:-mx-0"
+      />
     </template>
   </ul>
 </template>
@@ -14,17 +23,17 @@ import Item from "@/components/Item";
 
 export default {
   components: {
-    Item,
+    Item
   },
   props: {
     items: {
       type: Array,
-      required: true,
+      required: true
     },
     isLoading: {
       type: Boolean,
-      default: false,
+      default: false
     }
-  },
-}
+  }
+};
 </script>

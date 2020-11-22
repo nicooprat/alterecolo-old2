@@ -16,7 +16,7 @@ export default {
   components: {
     List,
     Navigation,
-    Search,
+    Search
   },
   props: {
     categories: {
@@ -26,13 +26,13 @@ export default {
     items: {
       type: Array,
       required: true
-    },
+    }
   },
   setup() {
     return {
       isLoading,
       getSearch
-    }
+    };
   }
-}
+};
 </script>

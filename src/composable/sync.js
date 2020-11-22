@@ -1,13 +1,13 @@
 import { ref, watchEffect } from "vue";
-import router from '@/router'
+import router from "@/router";
 
-export const sync = (key) => {
-  const val = ref(null)
+export const sync = key => {
+  const val = ref(null);
 
   // Sync at init
   watchEffect(() => {
-    val.value = router.currentRoute.value.query[key]
-  })
+    val.value = router.currentRoute.value.query[key];
+  });
 
   // Watch query and update ref
   watchEffect(() => {
@@ -15,10 +15,10 @@ export const sync = (key) => {
       ...router.currentRoute,
       query: {
         ...router.currentRoute.query,
-        [key]: val.value || undefined, // undefined removes key from URL
+        [key]: val.value || undefined // undefined removes key from URL
       }
-    })
-  })
+    });
+  });
 
-  return val
-}
+  return val;
+};
