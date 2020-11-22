@@ -3,8 +3,8 @@ import axios from "axios";
 
 const state = reactive({
   isLoading: true,
-  categories: null,
-  items: null,
+  categories: [],
+  items: [],
 })
 
 export const fetch = async () => {
