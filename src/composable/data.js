@@ -1,30 +1,14 @@
-import { computed, reactive, watch, watchEffect } from "vue";
+import { computed, reactive, watchEffect } from "vue";
 import axios from "axios";
 import Fuse from 'fuse.js'
 
-import router from '@/router'
+import { sync } from '@/composable/sync'
 
 const state = reactive({
   isLoading: true,
   categories: [],
   items: [],
-  search: '',
-})
-
-// Router sync
-
-watchEffect(() => {
-  state.search = router.currentRoute.value.query.search || ''
-})
-
-watchEffect(() => {
-  router.replace({
-    ...router.currentRoute,
-    query: {
-      ...router.currentRoute.query,
-      search: state.search || undefined, // undefined removes key from URL
-    }
-  })
+  search: sync('search'),
 })
 
 // Data
@@ -39,7 +23,7 @@ export const fetch = async () => {
 export const getCategories = computed(() => state.categories)
 
 export const getItems = computed(() => {
-  // Must state.items in new const to wake them watched
+  // Must store state.items in new const to wake them watched
   const items = state.items
   if (!state.search) {
     return items
@@ -58,7 +42,7 @@ const fuse = new Fuse([], {
   threshold: 0.3
 })
 
-watch(() => state.items, (items) => fuse.setCollection(items))
+watchEffect(() => fuse.setCollection(state.items))
 
 export const getSearch = computed({
   get: () => state.search,
