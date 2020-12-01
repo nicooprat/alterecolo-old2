@@ -9,8 +9,8 @@ const state = reactive({
   categories: [],
   items: [],
   search: sync("search"),
-  sort: "createdTime",
-  order: "desc"
+  sort: sync("sort", "createdTime"),
+  order: sync("order", "desc")
 });
 
 // Data
